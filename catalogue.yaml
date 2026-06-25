@@ -34,11 +34,3 @@
       ansible.builtin.npm:                              
        path: /app                                                   
        state: present
-   
-
-    - name: start service
-      ansible.builtin.systemd_service:
-        daemon_reload: true
-        name: catalogue
-        state: started
-		enabled: yes
