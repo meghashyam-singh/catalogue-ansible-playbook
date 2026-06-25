@@ -1,6 +1,6 @@
 ---
 - name: setup catalouge service
-  hosts: catalouge
+  hosts: localhost
   become: yes
   tasks:
     - name: disable nodejs
@@ -16,13 +16,13 @@
 
     - name: create directory
       ansible.builtin.file:
-        name: /app
+        path: /app
         state: directory
 
     - name: download to code to tmp path
       ansible.builtin.get_url:
         url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-        dest: /tmp/catalouge.zip
+        dest: /tmp/catalogue.zip
 
     - name: unzip code file to app
       ansible.builtin.unarchive:
@@ -32,5 +32,5 @@
 
     - name: install dependencies                                
       ansible.builtin.npm:                              
-       path: /app                                                   
-       state: present
+        path: /app                                                   
+        state: present
